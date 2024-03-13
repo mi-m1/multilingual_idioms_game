@@ -57,7 +57,7 @@ def next_question():
 root = tk.Tk()
 root.title("Quiz App")
 root.geometry("600x500")
-style = Style(theme="flatly")
+style = Style(theme="superhero")
 
 # Configure the font size for the question and choice buttons
 style.configure("TLabel", font=("Times", 20))
