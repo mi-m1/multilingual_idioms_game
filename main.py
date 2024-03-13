@@ -60,8 +60,8 @@ root.geometry("600x500")
 style = Style(theme="flatly")
 
 # Configure the font size for the question and choice buttons
-style.configure("TLabel", font=("Helvetica", 20))
-style.configure("TButton", font=("Helvetica", 16))
+style.configure("TLabel", font=("Times", 20))
+style.configure("TButton", font=("Times", 16))
 
 # Create the question label
 qs_label = ttk.Label(
