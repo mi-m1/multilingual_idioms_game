@@ -79,8 +79,8 @@ root.geometry("600x500")
 style = Style(theme="superhero")
 
 # Configure the font size for the question and choice buttons
-style.configure("TLabel", font=("Times", 20))
-style.configure("TButton", font=("Times", 16))
+style.configure("TLabel", font=("Times", 24))
+style.configure("TButton", font=("Times", 20))
 
 # Create the question label
 qs_label = ttk.Label(
@@ -126,7 +126,7 @@ next_btn = ttk.Button(
     root,
     text="Next",
     command=next_question,
-    state="disabled"
+    state="disabled",
 )
 next_btn.pack(pady=10)
 
@@ -138,10 +138,10 @@ next_btn.pack(pady=10)
 #     padding=10
 # )
 # # gpt3_btn.pack(paddy=10)
-gpt3_btn = Button(root, text="GPT 3.5 Turbo", command=show_hint_gpt3)
+gpt3_btn = Button(root, text="GPT 3.5 Turbo", font=("Times", 20), command=show_hint_gpt3)
 gpt3_btn.pack()
 
-gpt4_btn = Button(root, text="GPT4", command=show_hint_gpt4)
+gpt4_btn = Button(root, text="GPT4", font=("Times", 20), command=show_hint_gpt4)
 gpt4_btn.pack()
 
 # Initialize the current question index
