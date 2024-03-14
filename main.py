@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import Button
 from tkinter import messagebox, ttk
 from ttkbootstrap import Style
 from quiz_data import quiz_data
@@ -18,6 +19,24 @@ def show_question():
     feedback_label.config(text="")
     next_btn.config(state="disabled")
 
+# Function to display the hints from AI models
+# def show_hints():
+#     gpt3_hint = quiz_data['gpt3-5turbo']
+#     gpt4_hint = quiz_data["gpt4"]
+def show_hint_gpt3():
+    question = quiz_data[current_question]
+    # messagebox.showinfo("Hint", question["gpt3-5turbo"])
+    print(question["gpt3-5turbo"])
+
+    tk.messagebox.showinfo("GPT 3.5 Turbo", question["gpt3-5turbo"])
+    
+def show_hint_gpt4():
+    question = quiz_data[current_question]
+    # messagebox.showinfo("Hint", question["gpt3-5turbo"])
+    print(question["gpt4"])
+
+    tk.messagebox.showinfo("GPT 4", question["gpt4"])
+
 # Function to check the selected answer and provide feedback
 def check_answer(choice):
     # Get the current question from the quiz_data list
@@ -32,7 +51,7 @@ def check_answer(choice):
         score_label.config(text="Score: {}/{}".format(score, len(quiz_data)))
         feedback_label.config(text="Correct!", foreground="green")
     else:
-        feedback_label.config(text="Incorrect!", foreground="red")
+        feedback_label.config(text=f"Incorrect! The right answer is: {question['answer']}", foreground="red")
     
     # Disable all choice buttons and enable the next button
     for button in choice_btns:
@@ -110,6 +129,20 @@ next_btn = ttk.Button(
     state="disabled"
 )
 next_btn.pack(pady=10)
+
+# Create GPT-3.5-Turbo button
+# gpt3_btn = ttk.Button(
+#     root,
+#     text="GPT-3.5-Turbo",
+#     command=show_hint,
+#     padding=10
+# )
+# # gpt3_btn.pack(paddy=10)
+gpt3_btn = Button(root, text="GPT 3.5 Turbo", command=show_hint_gpt3)
+gpt3_btn.pack()
+
+gpt4_btn = Button(root, text="GPT4", command=show_hint_gpt4)
+gpt4_btn.pack()
 
 # Initialize the current question index
 current_question = 0
