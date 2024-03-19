@@ -3,7 +3,6 @@ from tkinter import Button
 from tkinter import messagebox, ttk
 from ttkbootstrap.dialogs import Messagebox
 from ttkbootstrap import Style
-# form ttkbootstrap.dialogs import Messagebox
 from quiz_data import quiz_data
 
 # Function to display the current question and choices
