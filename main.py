@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import Button
 from tkinter import messagebox, ttk
+from ttkbootstrap.dialogs import Messagebox
 from ttkbootstrap import Style
+# form ttkbootstrap.dialogs import Messagebox
 from quiz_data import quiz_data
 
 # Function to display the current question and choices
@@ -23,19 +25,42 @@ def show_question():
 # def show_hints():
 #     gpt3_hint = quiz_data['gpt3-5turbo']
 #     gpt4_hint = quiz_data["gpt4"]
+    
+def custom_messagebox(font_family, font_size, model, question):
+    top = tk.Toplevel()
+
+    x,y = root.winfo_rootx(), root.winfo_rooty()
+    width, height = root.winfo_width(),root.winfo_height()
+    top.geometry("%dx%d+%d+%d" % (width,height,x,y))
+    
+
+    # top.geometry("600x300")
+    # top.title(f"{model} explanation")
+    # message = tk.Label(top, text=question[model], font=(font_family, font_size))
+    # message.pack(paddy=10)
+
+    # ok_button = tk.Button(top, text="OK", command=top.destroy)
+    # ok_button.pack(paddy=10)
+
+    mb = Messagebox.ok(question[model], f"{model} explanation")
+
+
 def show_hint_gpt3():
     question = quiz_data[current_question]
     # messagebox.showinfo("Hint", question["gpt3-5turbo"])
     print(question["gpt3-5turbo"])
-
-    tk.messagebox.showinfo("GPT 3.5 Turbo", question["gpt3-5turbo"])
+    
+    # tk.messagebox.showinfo("GPT 3.5 Turbo", question["gpt3-5turbo"])
+    messagebox.showinfo("Hint", text="", command=custom_messagebox("Times", 16, "gpt3-5turbo", question))
     
 def show_hint_gpt4():
     question = quiz_data[current_question]
     # messagebox.showinfo("Hint", question["gpt3-5turbo"])
     print(question["gpt4"])
 
-    tk.messagebox.showinfo("GPT 4", question["gpt4"])
+    # tk.messagebox.showinfo("GPT 4", question["gpt4"])
+
+    messagebox.showinfo("Hint", text="", command=custom_messagebox("Times", 16, "gpt4", question))
 
 # Function to check the selected answer and provide feedback
 def check_answer(choice):
@@ -138,7 +163,15 @@ next_btn.pack(pady=10)
 #     padding=10
 # )
 # # gpt3_btn.pack(paddy=10)
+
+cus_msgbox_label = ttk.Label(
+    root,
+    anchor="center",
+    padding=10
+)
+
 gpt3_btn = Button(root, text="GPT 3.5 Turbo", font=("Times", 20), command=show_hint_gpt3)
+# gpt3_btn = Button(root, text="GPT 3.5 Turbo", font=("Times", 20), command=custom_messagebox("Times", 12, "gpt3-5turbo", quiz_data[current_question]))
 gpt3_btn.pack()
 
 gpt4_btn = Button(root, text="GPT4", font=("Times", 20), command=show_hint_gpt4)
